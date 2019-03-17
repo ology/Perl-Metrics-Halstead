@@ -17,7 +17,9 @@ use PPI::Dumper;
 
   my $pmh = Perl::Metrics::Halstead->new(file => '/some/perl/code.pl');
 
-  $pmh->dump;
+  my $metrics = $pmh->dump;
+
+  $pmh->report;
 
 =head1 DESCRIPTION
 
@@ -293,15 +295,15 @@ sub BUILD {
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
 }
 
-=head2 dump()
+=head2 report()
 
-  $pmh->dump();
+  $pmh->report();
 
 Print the computed metrics to C<STDOUT>.
 
 =cut
 
-sub dump {
+sub report {
     my ($self) = @_;
     printf "Total operators = %d, Total operands = %d\n", $self->n_operators, $self->n_operands;
     printf "Distinct operators = %d, Distinct operands = %d\n", $self->n_distinct_operators, $self->n_distinct_operands;
@@ -316,6 +318,36 @@ sub dump {
     printf "Program effort = %.3f\n", $self->effort;
     printf "Time to program = %.3f\n", $self->time_to_program;
     printf "Delivered bugs = %.3f\n", $self->delivered_bugs;
+}
+
+=head2 dump()
+
+  $metrics = $pmh->dump();
+
+Return a hashref of the metrics and their computed values.
+
+=cut
+
+sub dump {
+    my ($self) = @_;
+    return {
+        n_operators => $self->n_operators,
+        n_operands => $self->n_operands,
+        n_distinct_operators => $self->n_distinct_operators,
+        n_distinct_operands => $self->n_distinct_operands,
+        prog_vocab => $self->prog_vocab,
+        prog_length => $self->prog_length,
+        est_prog_length => $self->est_prog_length,
+        volume => $self->volume,
+        min_volume => $self->min_volume,
+        difficulty => $self->difficulty,
+        level => $self->level,
+        lang_level => $self->lang_level,
+        intel_content => $self->intel_content,
+        effort => $self->effort,
+        time_to_program => $self->time_to_program,
+        delivered_bugs => $self->delivered_bugs,
+    };
 }
 
 sub _is_operand {
