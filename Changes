@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Add test case for a bogus file.
+
+0.0300 2019-03-17 14:29:24
     - Add min_volume, lang_level and intel_content metrics. Fix level computation.
 
 0.0204 2019-03-17 10:23:14
