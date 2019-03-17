@@ -63,7 +63,7 @@ The number of distinct operators.  This is a computed attribute.
 
   $n_distinct_operands = $pmh->n_distinct_operands;
 
-The number of distinct operators.  This is a computed attribute.
+The number of distinct operands.  This is a computed attribute.
 
 =cut
 
