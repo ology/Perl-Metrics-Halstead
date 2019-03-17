@@ -246,16 +246,17 @@ sub BUILD {
         next unless defined $item[1];
         push @{ $halstead{ $item[0] } }, $item[1];
     }
+#use Data::Dumper;warn(__PACKAGE__,' ',__LINE__," MARK: ",Dumper\%halstead);
 
     $self->{n_operators} = 0;
     $self->{n_operands}  = 0;
 
     for my $key ( keys %halstead ) {
-        if ( _is_operator($key) ) {
-            $self->{n_operators} += @{ $halstead{$key} };
+        if ( _is_operand($key) ) {
+            $self->{n_operands} += @{ $halstead{$key} };
         }
         else {
-            $self->{n_operands} += @{ $halstead{$key} };
+            $self->{n_operators} += @{ $halstead{$key} };
         }
     }
 
@@ -263,7 +264,7 @@ sub BUILD {
 
     for my $key ( keys %halstead ) {
         for my $item ( @{ $halstead{$key} } ) {
-            if ( _is_operator($key) ) {
+            if ( _is_operand($key) ) {
                 $distinct{operands}->{$item} = undef;
             }
             else {
@@ -271,6 +272,7 @@ sub BUILD {
             }
         }
     }
+#use Data::Dumper;warn(__PACKAGE__,' ',__LINE__," MARK: ",Dumper\%distinct);
 
     $self->{n_distinct_operators} = keys %{ $distinct{operators} };
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
@@ -296,7 +298,7 @@ sub BUILD {
     $self->{delivered_bugs} = ($self->{effort} ** (2/3)) / 3000;
 }
 
-sub _is_operator {
+sub _is_operand {
     my $key = shift;
     return $key eq 'PPI::Token::Comment'
         || $key eq 'PPI::Token::Number'
