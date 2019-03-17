@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0100';
+our $VERSION = '0.0200';
 
 use Moo;
 use strictures 2;
@@ -17,16 +17,7 @@ use PPI::Dumper;
 
   my $pmh = Perl::Metrics::Halstead->new(file => '/some/perl/code.pl');
 
-  printf "Total operators = %d, Total operands = %d\n", $pmh->n_operators, $pmh->n_operands;
-  printf "Distinct operators = %d, Distinct operands = %d\n", $pmh->n_distinct_operators, $pmh->n_distinct_operands;
-  printf "Program vocabulary = %d, Program length = %d\n", $pmh->prog_vocab, $pmh->prog_length;
-  printf "Estimated program length = %.3f\n", $pmh->est_prog_length;
-  printf "Program volume = %.3f\n", $pmh->volume;
-  printf "Program difficulty = %.3f\n", $pmh->difficulty;
-  printf "Program level = %.3f\n", $pmh->level;
-  printf "Program effort = %.3f\n", $pmh->effort;
-  printf "Time to program = %.3f\n", $pmh->time_to_program;
-  printf "Delivered bugs = %.3f\n", $pmh->delivered_bugs;
+  $pmh->dump;
 
 =head1 DESCRIPTION
 
@@ -343,6 +334,28 @@ sub BUILD {
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
 }
 
+=head2 dump()
+
+  $pmh->dump();
+
+Print the computed metrics to C<STDOUT>.
+
+=cut
+
+sub dump {
+    my ($self) = @_;
+    printf "Total operators = %d, Total operands = %d\n", $self->n_operators, $self->n_operands;
+    printf "Distinct operators = %d, Distinct operands = %d\n", $self->n_distinct_operators, $self->n_distinct_operands;
+    printf "Program vocabulary = %d, Program length = %d\n", $self->prog_vocab, $self->prog_length;
+    printf "Estimated program length = %.3f\n", $self->est_prog_length;
+    printf "Program volume = %.3f\n", $self->volume;
+    printf "Program difficulty = %.3f\n", $self->difficulty;
+    printf "Program level = %.3f\n", $self->level;
+    printf "Program effort = %.3f\n", $self->effort;
+    printf "Time to program = %.3f\n", $self->time_to_program;
+    printf "Delivered bugs = %.3f\n", $self->delivered_bugs;
+}
+
 sub _is_operand {
     my $key = shift;
     return $key eq 'PPI::Token::Comment'
@@ -360,6 +373,8 @@ sub _log2 {
 __END__
 
 =head1 SEE ALSO
+
+The F<t/01-methods.t> file in this distribution.
 
 L<Moo>
 

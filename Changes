@@ -1,4 +1,7 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Add the ->dump method to output the computations.
+
+0.0100 2019-03-16 22:59:02
     - Minted by Dist::Zilla.

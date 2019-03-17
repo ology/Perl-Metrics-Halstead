@@ -28,4 +28,6 @@ is sprintf('%.3f', $pmh->effort), 70.184, 'effort';
 is sprintf('%.3f', $pmh->time_to_program), 3.899, 'time_to_program';
 is sprintf('%.3f', $pmh->delivered_bugs), 0.006, 'delivered_bugs';
 
+can_ok $pmh, 'dump';
+
 done_testing();
