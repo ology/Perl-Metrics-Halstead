@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Clean up module syntax.
+
+0.0201 2019-03-17 01:49:49
     - Improve test cases.
     - Improve documentation slightly.
 
