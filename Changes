@@ -2,6 +2,7 @@ Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
     - Improve test cases.
+    - Improve documentation slightly.
 
 0.0200 2019-03-16 23:38:00
     - Add the ->dump method to output the computations.
