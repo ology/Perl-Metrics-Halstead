@@ -11,6 +11,10 @@ throws_ok {
     Perl::Metrics::Halstead->new
 } qr/Missing required arguments/, 'required file';
 
+throws_ok {
+    Perl::Metrics::Halstead->new( file => 'bogus' )
+} qr/undefined value/, 'bogus file';
+
 my $pmh = Perl::Metrics::Halstead->new( file => 'eg/tester1.pl' );
 isa_ok $pmh, 'Perl::Metrics::Halstead';
 
