@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0203';
+our $VERSION = '0.0204';
 
 use Moo;
 use strictures 2;
@@ -227,6 +227,9 @@ sub BUILD {
         push @{ $halstead{ $item[0] } }, $item[1];
     }
 
+
+~
+
     $self->{n_operators} = 0;
     $self->{n_operands}  = 0;
 
@@ -284,6 +287,7 @@ sub _is_operand {
         || $key eq 'PPI::Token::Number'
         || $key eq 'PPI::Token::Symbol'
         || $key eq 'PPI::Token::Pod'
+        || $key eq 'PPI::Token::HereDoc'
         || $key =~ /Quote/;
 }
 
