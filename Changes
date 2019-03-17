@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Add PPI::Token::HereDoc to operands.
+
+0.0203 2019-03-17 10:16:57
     - Add PPI::Token::Pod to operands.
 
 0.0202 2019-03-17 02:13:55
