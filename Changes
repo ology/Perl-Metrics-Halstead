@@ -2,7 +2,8 @@ Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
     - Add test case for a bogus file.
-    - Fix doc wording.
+    - Improve documentation.
+    - Rename ->dump to ->report and make ->dump return a hashref of metrics.
 
 0.0300 2019-03-17 14:29:24
     - Add min_volume, lang_level and intel_content metrics. Fix level computation.
