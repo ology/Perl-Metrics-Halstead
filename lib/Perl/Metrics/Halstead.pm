@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0200';
+our $VERSION = '0.0201';
 
 use Moo;
 use strictures 2;
@@ -22,6 +22,9 @@ use PPI::Dumper;
 =head1 DESCRIPTION
 
 C<Perl::Metrics::Halstead> computes Halstead complexity metrics.
+
+Please see the explanatory links in the L</"SEE ALSO"> section for descriptions
+of what these attributes mean and how they are computed.
 
 =head1 ATTRIBUTES
 
