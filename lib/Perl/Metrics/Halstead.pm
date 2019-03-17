@@ -227,9 +227,6 @@ sub BUILD {
         push @{ $halstead{ $item[0] } }, $item[1];
     }
 
-
-~
-
     $self->{n_operators} = 0;
     $self->{n_operands}  = 0;
 
