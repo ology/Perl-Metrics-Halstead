@@ -110,7 +110,14 @@ The program vocabulary.  This is a computed attribute.
 has prog_vocab => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_prog_vocab {
+    my ($self) = @_;
+    return $self->n_distinct_operators + $self->n_distinct_operands;
+}
 
 =head2 prog_length
 
@@ -123,7 +130,14 @@ The program length.  This is a computed attribute.
 has prog_length => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_prog_length {
+    my ($self) = @_;
+    return $self->n_operators + $self->n_operands;
+}
 
 =head2 est_prog_length
 
@@ -136,7 +150,15 @@ The estimated program length.  This is a computed attribute.
 has est_prog_length => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_est_prog_length {
+    my ($self) = @_;
+    return $self->n_distinct_operators * _log2($self->n_distinct_operators)
+        + $self->n_distinct_operands * _log2($self->n_distinct_operands);
+}
 
 =head2 volume
 
@@ -149,7 +171,14 @@ The program volume.  This is a computed attribute.
 has volume => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_volume {
+    my ($self) = @_;
+    return $self->prog_length * _log2($self->prog_vocab);
+}
 
 =head2 difficulty
 
@@ -162,7 +191,15 @@ The program difficulty.  This is a computed attribute.
 has difficulty => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_difficulty {
+    my ($self) = @_;
+    return ($self->n_distinct_operators / 2)
+        * ($self->n_operands / $self->n_distinct_operands);
+}
 
 =head2 level
 
@@ -175,7 +212,14 @@ The program level.  This is a computed attribute.
 has level => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_level {
+    my ($self) = @_;
+    return 1 / $self->difficulty;
+}
 
 =head2 effort
 
@@ -188,7 +232,14 @@ The program effort.  This is a computed attribute.
 has effort => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_effort {
+    my ($self) = @_;
+    return $self->difficulty * $self->volume;
+}
 
 =head2 time_to_program
 
@@ -201,7 +252,14 @@ The time to program.  This is a computed attribute.
 has time_to_program => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_time_to_program {
+    my ($self) = @_;
+    return $self->effort / 18; # seconds
+}
 
 =head2 delivered_bugs
 
@@ -214,7 +272,14 @@ Delivered bugs.  This is a computed attribute.
 has delivered_bugs => (
     is       => 'ro',
     init_arg => undef,
+    lazy     => 1,
+    builder  => 1,
 );
+
+sub _build_delivered_bugs {
+    my ($self) = @_;
+    return ($self->effort ** (2/3)) / 3000;
+}
 
 =head1 METHODS
 
@@ -276,26 +341,6 @@ sub BUILD {
 
     $self->{n_distinct_operators} = keys %{ $distinct{operators} };
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
-
-    $self->{prog_vocab} = $self->{n_distinct_operators} + $self->{n_distinct_operands};
-
-    $self->{prog_length} = $self->{n_operators} + $self->{n_operands};
-
-    $self->{est_prog_length} = $self->{n_distinct_operators} * _log2($self->{n_distinct_operators})
-        + $self->{n_distinct_operands} * _log2($self->{n_distinct_operands});
-
-    $self->{volume} = $self->{prog_length} * _log2($self->{prog_vocab});
-
-    $self->{difficulty} = ($self->{n_distinct_operators} / 2)
-        * ($self->{n_operands} / $self->{n_distinct_operands});
-
-    $self->{level} = 1 / $self->{difficulty};
-
-    $self->{effort} = $self->{difficulty} * $self->{volume};
-
-    $self->{time_to_program} = $self->{effort} / 18; # seconds
-
-    $self->{delivered_bugs} = ($self->{effort} ** (2/3)) / 3000;
 }
 
 sub _is_operand {
