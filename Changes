@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Add PPI::Token::Pod to operands.
+
+0.0202 2019-03-17 02:13:55
     - Clean up module syntax and POD.
 
 0.0201 2019-03-17 01:49:49
