@@ -2,6 +2,7 @@ Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
     - Improve the ->report output.
+    - Add test case.
 
 0.0501 2019-03-18 11:48:48
     - Improve documentation.
