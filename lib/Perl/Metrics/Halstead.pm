@@ -250,7 +250,8 @@ sub BUILD {
         $item =~ s/\s*$//;
         my @item = split /\s+/, $item, 2;
         next unless defined $item[1];
-        next if $item[0] eq 'PPI::Token::Comment';
+        next if $item[0] eq 'PPI::Token::Comment'
+            or $item[0] eq 'PPI::Token::Pod';
         push @{ $halstead{ $item[0] } }, $item[1];
     }
 #use Data::Dumper;warn(__PACKAGE__,' ',__LINE__,' ',Dumper\%halstead);
