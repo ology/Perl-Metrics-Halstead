@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Fix annoying typo.
+
+0.0400 2019-03-17 17:03:21
     - Add test case for a bogus file.
     - Improve documentation.
     - Rename ->dump to ->report and make ->dump return a hashref of metrics.
