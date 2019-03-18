@@ -1,7 +1,7 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
-    - Do not include code comments in the computations.
+    - Do not include code comments or POD in the computations.
 
 0.0401 2019-03-17 18:27:04
     - Fix annoying typo.
