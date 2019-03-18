@@ -252,6 +252,7 @@ sub BUILD {
         next unless defined $item[1];
         push @{ $halstead{ $item[0] } }, $item[1];
     }
+#use Data::Dumper;warn(__PACKAGE__,' ',__LINE__,' ',Dumper\%halstead);
 
     $self->{n_operators} = 0;
     $self->{n_operands}  = 0;
@@ -277,6 +278,7 @@ sub BUILD {
             }
         }
     }
+#use Data::Dumper;warn(__PACKAGE__,' ',__LINE__,' ',Dumper\%distinct);
 
     $self->{n_distinct_operators} = keys %{ $distinct{operators} };
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
