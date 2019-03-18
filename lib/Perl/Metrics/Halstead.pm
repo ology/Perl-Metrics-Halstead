@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0500';
+our $VERSION = '0.0501';
 
 use Moo;
 use strictures 2;
@@ -30,11 +30,14 @@ of what these attributes mean and how they are computed.
 
 =head1 ATTRIBUTES
 
+All attributes are calculated except for B<file>, which is required to be given
+in the constructor.
+
 =head2 file
 
   $file = $pmh->file;
 
-The file to analyze.  This is a required attribute.
+The file to analyze.
 
 =cut
 
@@ -47,25 +50,25 @@ has file => (
 
   $n_operators = $pmh->n_operators;
 
-The total number of operators.  This is a computed attribute.
+The total number of operators.
 
 =head2 n_operands
 
   $n_operands = $pmh->n_operands;
 
-The total number of operands.  This is a computed attribute.
+The total number of operands.
 
 =head2 n_distinct_operators
 
   $n_distinct_operators = $pmh->n_distinct_operators;
 
-The number of distinct operators.  This is a computed attribute.
+The number of distinct operators.
 
 =head2 n_distinct_operands
 
   $n_distinct_operands = $pmh->n_distinct_operands;
 
-The number of distinct operands.  This is a computed attribute.
+The number of distinct operands.
 
 =cut
 
@@ -83,67 +86,67 @@ has [qw(
 
   $prog_vocab = $pmh->prog_vocab;
 
-The program vocabulary.  This is a computed attribute.
+The program vocabulary.
 
 =head2 prog_length
 
   $prog_length = $pmh->prog_length;
 
-The program length.  This is a computed attribute.
+The program length.
 
 =head2 est_prog_length
 
   $est_prog_length = $pmh->est_prog_length;
 
-The estimated program length.  This is a computed attribute.
+The estimated program length.
 
 =head2 volume
 
   $volume = $pmh->volume;
 
-The program volume.  This is a computed attribute.
+The program volume.
 
 =head2 difficulty
 
   $difficulty = $pmh->difficulty;
 
-The program difficulty.  This is a computed attribute.
+The program difficulty.
 
 =head2 level
 
   $level = $pmh->level;
 
-The program level.  This is a computed attribute.
+The program level.
 
 =head2 lang_level
 
   $lang_level = $pmh->lang_level;
 
-The programming language level.  This is a computed attribute.
+The programming language level.
 
 =head2 intel_content
 
   $intel_content = $pmh->intel_content;
 
-Measure of the information content of a program. This is a computed attribute.
+Measure of the information content of a program.
 
 =head2 effort
 
   $effort = $pmh->effort;
 
-The program effort.  This is a computed attribute.
+The program effort.
 
 =head2 time_to_program
 
   $time_to_program = $pmh->time_to_program;
 
-The time to program.  This is a computed attribute.
+The time to program.
 
 =head2 delivered_bugs
 
   $delivered_bugs = $pmh->delivered_bugs;
 
-Delivered bugs.  This is a computed attribute.
+Delivered bugs.
 
 =cut
 
