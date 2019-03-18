@@ -53,7 +53,7 @@ The total number of operators.  This is a computed attribute.
 
   $n_operands = $pmh->n_operands;
 
-The total number of operators.  This is a computed attribute.
+The total number of operands.  This is a computed attribute.
 
 =head2 n_distinct_operators
 
