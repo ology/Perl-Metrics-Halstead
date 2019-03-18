@@ -125,7 +125,7 @@ The programming language level.  This is a computed attribute.
 
   $intel_content = $pmh->intel_content;
 
-Amount of intelligence presented in the program.  This is a computed attribute.
+Measure of the information content of a program. This is a computed attribute.
 
 =head2 effort
 
