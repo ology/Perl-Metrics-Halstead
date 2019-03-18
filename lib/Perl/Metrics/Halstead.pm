@@ -372,4 +372,6 @@ L<https://www.verifysoft.com/en_halstead_metrics.html>
 
 L<https://www.geeksforgeeks.org/software-engineering-halsteads-software-metrics/>
 
+L<https://www.compuware.com/hard-can-find-halstead-maintenance-effort-metric/>
+
 =cut
