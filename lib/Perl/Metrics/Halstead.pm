@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0501';
+our $VERSION = '0.0502';
 
 use Moo;
 use strictures 2;
@@ -299,18 +299,19 @@ Print the computed metrics to C<STDOUT>.
 
 sub report {
     my ($self) = @_;
-    printf "Total operators = %d, Total operands = %d\n", $self->n_operators, $self->n_operands;
-    printf "Distinct operators = %d, Distinct operands = %d\n", $self->n_distinct_operators, $self->n_distinct_operands;
-    printf "Program vocabulary = %d, Program length = %d\n", $self->prog_vocab, $self->prog_length;
-    printf "Estimated program length = %.3f\n", $self->est_prog_length;
-    printf "Program volume = %.3f\n", $self->volume;
-    printf "Program difficulty = %.3f\n", $self->difficulty;
-    printf "Program level = %.3f\n", $self->level;
-    printf "Program language level = %.3f\n", $self->lang_level;
-    printf "Program intelligence content = %.3f\n", $self->intel_content;
-    printf "Program effort = %.3f\n", $self->effort;
-    printf "Time to program = %.3f\n", $self->time_to_program;
-    printf "Delivered bugs = %.3f\n", $self->delivered_bugs;
+    printf "Total operators: %d + Total operands: %d = Program length: %d\n",
+        $self->n_operators, $self->n_operands, $self->prog_length;
+    printf "Distinct operators: %d + Distinct operands: %d = Program vocabulary: %d\n",
+        $self->n_distinct_operators, $self->n_distinct_operands, $self->prog_vocab;
+    printf "Estimated program length: %.3f\n", $self->est_prog_length;
+    printf "Program volume: %.3f\n", $self->volume;
+    printf "Program difficulty: %.3f\n", $self->difficulty;
+    printf "Program level: %.3f\n", $self->level;
+    printf "Program language level: %.3f\n", $self->lang_level;
+    printf "Program intelligence content: %.3f\n", $self->intel_content;
+    printf "Program effort: %.3f\n", $self->effort;
+    printf "Time to program: %.3f\n", $self->time_to_program;
+    printf "Delivered bugs: %.3f\n", $self->delivered_bugs;
 }
 
 =head2 dump()
