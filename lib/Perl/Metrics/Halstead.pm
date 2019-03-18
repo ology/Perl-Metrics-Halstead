@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0400';
+our $VERSION = '0.0401';
 
 use Moo;
 use strictures 2;
@@ -103,13 +103,6 @@ The estimated program length.  This is a computed attribute.
 
 The program volume.  This is a computed attribute.
 
-=head2 min_volume
-
-  $min_volume = $pmh->min_volume;
-
-The volume of the most succinct program which can be coded.  This is a computed
-attribute.
-
 =head2 difficulty
 
   $difficulty = $pmh->difficulty;
@@ -159,7 +152,6 @@ has [qw(
     prog_length
     est_prog_length
     volume
-    min_volume
     difficulty
     level
     lang_level
@@ -194,11 +186,6 @@ sub _build_volume {
     return $self->prog_length * _log2($self->prog_vocab);
 }
 
-sub _build_min_volume {
-    my ($self) = @_;
-    return (2 + $self->n_distinct_operands) * _log2(2 + $self->n_distinct_operands);
-}
-
 sub _build_difficulty {
     my ($self) = @_;
     return ($self->n_distinct_operators / 2)
@@ -207,7 +194,7 @@ sub _build_difficulty {
 
 sub _build_level {
     my ($self) = @_;
-    return $self->min_volume / $self->volume;
+    return 1 / $self->difficulty;
 }
 
 sub _build_lang_level {
@@ -310,7 +297,6 @@ sub report {
     printf "Program vocabulary = %d, Program length = %d\n", $self->prog_vocab, $self->prog_length;
     printf "Estimated program length = %.3f\n", $self->est_prog_length;
     printf "Program volume = %.3f\n", $self->volume;
-    printf "Program minimum volume = %.3f\n", $self->min_volume;
     printf "Program difficulty = %.3f\n", $self->difficulty;
     printf "Program level = %.3f\n", $self->level;
     printf "Program language level = %.3f\n", $self->lang_level;
@@ -339,7 +325,6 @@ sub dump {
         prog_length => $self->prog_length,
         est_prog_length => $self->est_prog_length,
         volume => $self->volume,
-        min_volume => $self->min_volume,
         difficulty => $self->difficulty,
         level => $self->level,
         lang_level => $self->lang_level,
