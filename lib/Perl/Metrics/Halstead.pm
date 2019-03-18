@@ -347,7 +347,6 @@ sub _is_operand {
     my $key = shift;
     return $key eq 'PPI::Token::Number'
         || $key eq 'PPI::Token::Symbol'
-        || $key eq 'PPI::Token::Pod'
         || $key eq 'PPI::Token::HereDoc'
         || $key =~ /Quote/;
 }
