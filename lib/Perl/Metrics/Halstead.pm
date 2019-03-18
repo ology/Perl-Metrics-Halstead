@@ -254,7 +254,7 @@ sub BUILD {
         my @item = split /\s+/, $item, 2;
         next unless defined $item[1];
         next if $item[0] eq 'PPI::Token::Comment'
-            or $item[0] eq 'PPI::Token::Pod';
+            or $item[0] eq 'PPI::Token::Pod'
             or $item[0] eq 'PPI::Token::End';
         push @{ $halstead{ $item[0] } }, $item[1];
     }
