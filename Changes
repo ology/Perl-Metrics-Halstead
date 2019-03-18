@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Improve documentation.
+
+0.0500 2019-03-17 20:56:54
     - Do not include code comments or POD in the computations.
 
 0.0401 2019-03-17 18:27:04
