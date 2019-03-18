@@ -140,7 +140,7 @@ The program effort.
 
   $time_to_program = $pmh->time_to_program;
 
-The time to program.
+The time to program (in seconds).
 
 =head2 delivered_bugs
 
