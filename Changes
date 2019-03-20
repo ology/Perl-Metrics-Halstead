@@ -1,6 +1,8 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+
+0.0600 2019-03-18 16:20:19
     - Add missing tokens to skip and classify as an operand.
     - Look for matches for /Number/ instead of a single token type in the operand classification.
 
