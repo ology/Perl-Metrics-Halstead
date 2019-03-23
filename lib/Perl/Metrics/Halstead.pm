@@ -28,7 +28,8 @@ C<Perl::Metrics::Halstead> computes Halstead complexity metrics.
 Please see the explanatory links in the L</"SEE ALSO"> section for descriptions
 of what these attributes mean and how they are computed.
 
-My write-up about this technique is at L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
+My write-up about this technique is at
+L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
 
 =head1 ATTRIBUTES
 
