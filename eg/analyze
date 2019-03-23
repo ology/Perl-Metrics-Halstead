@@ -5,7 +5,7 @@ use warnings;
 use Perl::Metrics::Halstead;
 
 # Possible metrics: effort, difficulty, volume, level, lang_level, intel_content, time_to_program, delivered_bugs
-my $metric = shift || die "Usage: perl $0 metric file1.pm [file2.pm...]\n";
+my $metric = shift || die "Usage: perl $0 metric file1.pm file2.pl [file3.pm...]\n";
 
 die "Invalid Halstead metric: $metric\n" unless Perl::Metrics::Halstead->can($metric);
 
