@@ -28,6 +28,8 @@ C<Perl::Metrics::Halstead> computes Halstead complexity metrics.
 Please see the explanatory links in the L</"SEE ALSO"> section for descriptions
 of what these attributes mean and how they are computed.
 
+My write-up about this technique is at L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
+
 =head1 ATTRIBUTES
 
 All attributes are calculated except for B<file>, which is required to be given
@@ -372,6 +374,8 @@ L<PPI::Document>
 L<PPI::Dumper>
 
 L<https://en.wikipedia.org/wiki/Halstead_complexity_measures>
+
+L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
 
 L<https://www.verifysoft.com/en_halstead_metrics.html>
 
