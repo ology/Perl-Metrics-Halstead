@@ -15,11 +15,11 @@ use PPI::Dumper;
 
   use Perl::Metrics::Halstead;
 
-  my $h = Perl::Metrics::Halstead->new(file => '/some/perl/code.pl');
+  my $halstead = Perl::Metrics::Halstead->new(file => '/some/perl/code.pl');
 
-  my $metrics = $h->dump;
+  my $metrics = $halstead->dump;
 
-  $h->report;
+  $halstead->report;
 
 =head1 DESCRIPTION
 
@@ -38,7 +38,7 @@ given in the constructor.
 
 =head2 file
 
-  $file = $h->file;
+  $file = $halstead->file;
 
 The file to analyze.
 
@@ -51,25 +51,25 @@ has file => (
 
 =head2 n_operators
 
-  $n = $h->n_operators;
+  $n = $halstead->n_operators;
 
 The total number of operators.
 
 =head2 n_operands
 
-  $n = $h->n_operands;
+  $n = $halstead->n_operands;
 
 The total number of operands.
 
 =head2 n_distinct_operators
 
-  $n = $h->n_distinct_operators;
+  $n = $halstead->n_distinct_operators;
 
 The number of distinct operators.
 
 =head2 n_distinct_operands
 
-  $n = $h->n_distinct_operands;
+  $n = $halstead->n_distinct_operands;
 
 The number of distinct operands.
 
@@ -87,67 +87,67 @@ has [qw(
 
 =head2 prog_vocab
 
-  $x = $h->prog_vocab;
+  $x = $halstead->prog_vocab;
 
 The program vocabulary.
 
 =head2 prog_length
 
-  $x = $h->prog_length;
+  $x = $halstead->prog_length;
 
 The program length.
 
 =head2 est_prog_length
 
-  $x = $h->est_prog_length;
+  $x = $halstead->est_prog_length;
 
 The estimated program length.
 
 =head2 volume
 
-  $x = $h->volume;
+  $x = $halstead->volume;
 
 The program volume.
 
 =head2 difficulty
 
-  $x = $h->difficulty;
+  $x = $halstead->difficulty;
 
 The program difficulty.
 
 =head2 level
 
-  $x = $h->level;
+  $x = $halstead->level;
 
 The program level.
 
 =head2 lang_level
 
-  $x = $h->lang_level;
+  $x = $halstead->lang_level;
 
 The programming language level.
 
 =head2 intel_content
 
-  $x = $h->intel_content;
+  $x = $halstead->intel_content;
 
 Measure of the information content of a program.
 
 =head2 effort
 
-  $x = $h->effort;
+  $x = $halstead->effort;
 
 The program effort.
 
 =head2 time_to_program
 
-  $x = $h->time_to_program;
+  $x = $halstead->time_to_program;
 
 The time to program (in seconds).
 
 =head2 delivered_bugs
 
-  $x = $h->delivered_bugs;
+  $x = $halstead->delivered_bugs;
 
 Delivered bugs.
 
@@ -232,7 +232,7 @@ sub _build_delivered_bugs {
 
 =head2 new
 
-  $h = Perl::Metrics::Halstead->new(file => $file);
+  $halstead = Perl::Metrics::Halstead->new(file => $file);
 
 Create a new C<Perl::Metrics::Halstead> object given the B<file> argument.
 
@@ -295,7 +295,7 @@ sub BUILD {
 
 =head2 report
 
-  $h->report;
+  $halstead->report;
 
 Print the computed metrics to C<STDOUT>.
 
@@ -320,7 +320,7 @@ sub report {
 
 =head2 dump
 
-  $metrics = $h->dump;
+  $metrics = $halstead->dump;
 
 Return a hashref of the metrics and their computed values.
 
