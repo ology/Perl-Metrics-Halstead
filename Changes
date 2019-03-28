@@ -1,6 +1,7 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.0601 2019-03-23 07:17:06
     - Add the eg/analyze example program.
