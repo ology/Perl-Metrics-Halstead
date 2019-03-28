@@ -33,8 +33,8 @@ L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
 
 =head1 ATTRIBUTES
 
-All attributes are calculated except for B<file>, which is required to be given
-in the constructor.
+B<All> attributes are calculated except for B<file>, which is required to be
+given in the constructor.
 
 =head2 file
 
@@ -230,13 +230,13 @@ sub _build_delivered_bugs {
 
 =head1 METHODS
 
-=head2 new()
+=head2 new
 
   $h = Perl::Metrics::Halstead->new(file => $file);
 
 Create a new C<Perl::Metrics::Halstead> object given the B<file> argument.
 
-=head2 BUILD()
+=head2 BUILD
 
 Process the given B<file> into the computed metrics.
 
@@ -293,9 +293,9 @@ sub BUILD {
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
 }
 
-=head2 report()
+=head2 report
 
-  $h->report();
+  $h->report;
 
 Print the computed metrics to C<STDOUT>.
 
@@ -318,9 +318,9 @@ sub report {
     printf "Delivered bugs: %.3f\n", $self->delivered_bugs;
 }
 
-=head2 dump()
+=head2 dump
 
-  $metrics = $h->dump();
+  $metrics = $h->dump;
 
 Return a hashref of the metrics and their computed values.
 
