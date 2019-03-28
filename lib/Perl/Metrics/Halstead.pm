@@ -23,7 +23,7 @@ use PPI::Dumper;
 
 =head1 DESCRIPTION
 
-C<Perl::Metrics::Halstead> computes Halstead complexity metrics.
+C<Perl::Metrics::Halstead> computes software Halstead complexity metrics.
 
 Please see the explanatory links in the L</"SEE ALSO"> section for descriptions
 of what these attributes mean and how they are computed.
