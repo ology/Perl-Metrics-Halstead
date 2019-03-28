@@ -40,7 +40,6 @@ my $y = $pmh->dump;
 isa_ok $y, 'HASH';
 is keys %$y, 15, 'dump';
 
-can_ok $pmh, 'report';
 my ($stdout, $stderr) = capture { $pmh->report };
 is $stderr, '', 'stderr';
 like $stdout, qr/difficulty: $x/, 'stdout';
