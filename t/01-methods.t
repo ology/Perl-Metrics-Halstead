@@ -41,7 +41,7 @@ isa_ok $y, 'HASH';
 is keys %$y, 15, 'dump';
 
 my ($stdout, $stderr) = capture { $pmh->report };
-is $stderr, '', 'stderr';
+ok !$stderr, 'stderr';
 like $stdout, qr/difficulty: $x/, 'stdout';
 
 $pmh = Perl::Metrics::Halstead->new( file => 'eg/tester2.pl' );
