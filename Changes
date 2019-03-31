@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Fix comment skipping logic.
+
+0.0602 2019-03-28 00:45:12
     - Improve documentation.
     - Add report output tests.
 
