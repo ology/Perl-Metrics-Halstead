@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0603';
+our $VERSION = '0.0604';
 
 use Moo;
 use strictures 2;
@@ -289,6 +289,9 @@ sub BUILD {
 
     $self->{n_distinct_operators} = keys %{ $distinct{operators} };
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
+
+    die 'No distinct operands. Computation cannot continue.'
+        unless $self->{n_distinct_operands};
 }
 
 =head2 report
