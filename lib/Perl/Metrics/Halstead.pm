@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0604';
+our $VERSION = '0.0603';
 
 use Moo;
 use strictures 2;
@@ -30,6 +30,8 @@ of what these attributes mean and how they are computed.
 
 My write-up about this technique is at
 L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
+
+The installed program for computing this is called L<halstead>.
 
 =head1 ATTRIBUTES
 
