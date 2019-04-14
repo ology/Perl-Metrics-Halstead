@@ -369,7 +369,7 @@ __END__
 
 =head1 SEE ALSO
 
-The F<eg/analyze> and F<t/01-methods.t> file in this distribution.
+The F<bin/halstead> and F<t/01-methods.t> files in this distribution.
 
 L<Moo>
 
