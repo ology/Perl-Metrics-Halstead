@@ -222,7 +222,7 @@ sub _build_effort {
 
 sub _build_time_to_program {
     my ($self) = @_;
-    return $self->effort / 18; # seconds
+    return $self->effort / 18;
 }
 
 sub _build_delivered_bugs {
