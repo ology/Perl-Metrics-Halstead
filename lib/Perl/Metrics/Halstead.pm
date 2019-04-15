@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0603';
+our $VERSION = '0.0604';
 
 use Moo;
 use strictures 2;
@@ -251,6 +251,9 @@ sub BUILD {
 
     my $dump = PPI::Dumper->new( $doc, whitespace => 0, comments => 0 );
 
+    die 'No document parsed for ', $self->file, ". Computation can't continue.\n"
+        unless $dump;
+
     my %halstead;
 
     for my $item ( $dump->list ) {
@@ -292,7 +295,7 @@ sub BUILD {
     $self->{n_distinct_operators} = keys %{ $distinct{operators} };
     $self->{n_distinct_operands}  = keys %{ $distinct{operands} };
 
-    die 'No distinct operands. Computation cannot continue.'
+    die 'No distinct operands for ', $self->file, ". Computation cannot continue.\n"
         unless $self->{n_distinct_operands};
 }
 
