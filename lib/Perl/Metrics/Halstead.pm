@@ -4,12 +4,12 @@ package Perl::Metrics::Halstead;
 
 our $VERSION = '0.0604';
 
+use PPI::Document;
+use PPI::Dumper;
+
 use Moo;
 use strictures 2;
 use namespace::clean;
-
-use PPI::Document;
-use PPI::Dumper;
 
 =head1 SYNOPSIS
 
