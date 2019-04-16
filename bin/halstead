@@ -30,7 +30,7 @@ my @scores;
 
 my $i = 0;
 
-# Compute the Halstead metric for each given file.
+# Compute Halstead for each given file.
 for my $file (@packages) {
     next unless -e $file;
 
