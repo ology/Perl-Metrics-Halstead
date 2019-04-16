@@ -44,6 +44,7 @@ for my $file (@packages) {
     };
     if ( $@ ) {
         warn "$@\n";
+        next;
     }
 
     if ( $report ) {
