@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# PODNAME: halstead - Analyze Perl code for Halstead complexity
+# PODNAME: halstead - Analyze the Halstead complexity of Perl code
 use strict;
 use warnings;
 
