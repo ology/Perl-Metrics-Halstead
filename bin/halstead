@@ -34,9 +34,10 @@ my $i = 0;
 for my $file (@packages) {
     next unless -e $file;
 
-    $i++;
-
-    print "$i. Processing $file:\n" if $report;
+    if ( $report ) {
+        $i++;
+        print "$i. Processing $file:\n";
+    }
 
     my $m;
     eval {
