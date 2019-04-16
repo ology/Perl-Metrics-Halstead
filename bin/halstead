@@ -32,7 +32,10 @@ my $i = 0;
 
 # Compute Halstead for each given file.
 for my $file (@packages) {
-    next unless -e $file;
+    unless ( -e $file ) {
+        warn "File $file does not exist.\n";
+        next;
+    }
 
     if ( $report ) {
         $i++;
