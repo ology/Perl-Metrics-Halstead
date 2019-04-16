@@ -22,7 +22,8 @@ GetOptions(
 pod2usage(1) if $help || !@ARGV;
 pod2usage( -exitval => 0, -verbose => 2 ) if $man;
 
-die "Invalid Halstead metric: $metric\n" unless Perl::Metrics::Halstead->can($metric);
+die "Invalid Halstead metric: $metric\n"
+    unless Perl::Metrics::Halstead->can($metric);
 
 my @packages = @ARGV;
 
