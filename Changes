@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Fix the bin/halstead POD.
+
+0.0605 2019-04-15 18:37:18
     - Cleaned up the bin/halstead code.
 
 0.0604 2019-04-14 23:06:36
