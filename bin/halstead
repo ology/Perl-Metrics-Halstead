@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# PODNAME: halstead - Analyze the Halstead complexity of Perl code
+# PODNAME: halstead
 use strict;
 use warnings;
 
@@ -69,6 +69,10 @@ if ( @scores ) {
 }
 
 __END__
+
+=head1 NAME
+
+halstead - Analyze the Halstead complexity of Perl code
 
 =head1 SYNOPSIS
 
