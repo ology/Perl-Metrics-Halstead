@@ -58,7 +58,7 @@ for my $file (@packages) {
 if ( @scores ) {
     # Output the sorted file list.
     my $n = 0;
-    for my $i ( sort{ $a->[1] <=> $b->[1] } @scores ){
+    for my $i ( sort { $a->[1] <=> $b->[1] } @scores ){
         printf "%d. %.4f %s\n", ++$n, $i->[1], $i->[0];
     }
 }
