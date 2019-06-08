@@ -106,4 +106,10 @@ Possible metrics:
 
 Output a Halstead report for each given file instead of a single C<--metric>.
 
+=head1 SEE ALSO
+
+L<Getopt::Long>
+
+L<Pod::Usage>
+
 =cut
