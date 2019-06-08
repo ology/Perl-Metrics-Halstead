@@ -70,23 +70,22 @@ if ( @scores ) {
 
 __END__
 
-=head1 NAME
-
-halstead - Analyze the Halstead complexity of Perl code
-
 =head1 SYNOPSIS
 
-  halstead [--options] /some/perl/file.pl [/another/Perl.pm ...]
+  halstead [--options] /some/perl/file.pl [/some/perl/Module.pm ...]
+
+=head1 DESCRIPTION
+
+Analyze the Halstead complexity of Perl code.
 
 =head1 OPTIONS
 
 =head2 metric
 
-  --metric difficulty
+  --metric effort
 
-The Halstead sorted metric to use for non-report output.
-
-However, if set to the empty string (C<''>) C<--report> output is assumed.
+The Halstead sorted metric.  If not specified on the command line, a metric of
+C<effort> is used.
 
 Possible metrics:
 
@@ -103,6 +102,6 @@ Possible metrics:
 
   --report
 
-Output a Halstead report for each given file.
+Output a Halstead report for each given file instead of a single C<--metric>.
 
 =cut
