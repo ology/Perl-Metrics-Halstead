@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Clean up module code a bit.
+
+0.0608 2019-06-08 08:44:11
     - Add missing POD section for --precision to bin/halstead.
 
 0.0607 2019-06-08 08:36:06
