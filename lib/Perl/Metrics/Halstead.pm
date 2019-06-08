@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0607';
+our $VERSION = '0.0608';
 
 use PPI::Document;
 use PPI::Dumper;
