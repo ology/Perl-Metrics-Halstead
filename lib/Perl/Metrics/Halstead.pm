@@ -305,14 +305,14 @@ sub BUILD {
   $halstead->report($precision);
 
 Print the computed metrics to C<STDOUT>.  Optionally provide a number for the
-decimal precision.  Default: 3 digits
+decimal precision.  Default: 2 digits
 
 =cut
 
 sub report {
     my ( $self, $precision ) = @_;
 
-    $precision //= 3;
+    $precision //= 2;
 
     printf "Total operators: %d + Total operands: %d = Program length: %d\n",
         $self->n_operators, $self->n_operands, $self->prog_length;
