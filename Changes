@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Add missing POD section for --precision to bin/halstead.
+
+0.0607 2019-06-08 08:36:06
     - Allow report decimal precision to be specified.
     - Improve documentation.
 
