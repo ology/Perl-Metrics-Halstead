@@ -302,8 +302,10 @@ sub BUILD {
 =head2 report
 
   $halstead->report;
+  $halstead->report($precision);
 
-Print the computed metrics to C<STDOUT>.
+Print the computed metrics to C<STDOUT>.  Optionally provide a number for the
+decimal precision.  Default: 3 digits
 
 =cut
 
