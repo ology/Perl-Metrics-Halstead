@@ -9,14 +9,16 @@ use Pod::Usage;
 
 my $metric = 'effort';
 my $report = 0;
+my $prec   = 2;
 my $help   = 0;
 my $man    = 0;
 
 GetOptions(
-    'metric|m=s' => \$metric,
-    'report|r'   => \$report,
-    'help|?'     => \$help,
-    'man'        => \$man,
+    'metric|m=s'    => \$metric,
+    'report|r'      => \$report,
+    'precision|p=i' => \$prec,
+    'help|?'        => \$help,
+    'man'           => \$man,
 ) or pod2usage(2);
 
 pod2usage(1) if $help || !@ARGV;
@@ -53,7 +55,7 @@ for my $file (@packages) {
     }
 
     if ( $report ) {
-        $m->report;
+        $m->report($prec);
     }
     else {
         push @scores, [ $file, $m->$metric ] if $metric && $m;
