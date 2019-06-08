@@ -318,15 +318,15 @@ sub report {
         $self->n_operators, $self->n_operands, $self->prog_length;
     printf "Distinct operators: %d + Distinct operands: %d = Program vocabulary: %d\n",
         $self->n_distinct_operators, $self->n_distinct_operands, $self->prog_vocab;
-    printf "Estimated program length: %.*f\n", $precision, $self->est_prog_length;
-    printf "Program volume: %.*f\n", $precision, $self->volume;
-    printf "Program difficulty: %.*f\n", $precision, $self->difficulty;
-    printf "Program level: %.*f\n", $precision, $self->level;
-    printf "Program language level: %.*f\n", $precision, $self->lang_level;
+    printf "Estimated program length: %.*f\n",     $precision, $self->est_prog_length;
+    printf "Program volume: %.*f\n",               $precision, $self->volume;
+    printf "Program difficulty: %.*f\n",           $precision, $self->difficulty;
+    printf "Program level: %.*f\n",                $precision, $self->level;
+    printf "Program language level: %.*f\n",       $precision, $self->lang_level;
     printf "Program intelligence content: %.*f\n", $precision, $self->intel_content;
-    printf "Program effort: %.*f\n", $precision, $self->effort;
-    printf "Time to program: %.*f\n", $precision, $self->time_to_program;
-    printf "Delivered bugs: %.*f\n", $precision, $self->delivered_bugs;
+    printf "Program effort: %.*f\n",               $precision, $self->effort;
+    printf "Time to program: %.*f\n",              $precision, $self->time_to_program;
+    printf "Delivered bugs: %.*f\n",               $precision, $self->delivered_bugs;
 }
 
 =head2 dump
@@ -340,21 +340,21 @@ Return a hashref of the metrics and their computed values.
 sub dump {
     my ($self) = @_;
     return {
-        n_operators => $self->n_operators,
-        n_operands => $self->n_operands,
+        n_operators          => $self->n_operators,
+        n_operands           => $self->n_operands,
         n_distinct_operators => $self->n_distinct_operators,
-        n_distinct_operands => $self->n_distinct_operands,
-        prog_vocab => $self->prog_vocab,
-        prog_length => $self->prog_length,
-        est_prog_length => $self->est_prog_length,
-        volume => $self->volume,
-        difficulty => $self->difficulty,
-        level => $self->level,
-        lang_level => $self->lang_level,
-        intel_content => $self->intel_content,
-        effort => $self->effort,
-        time_to_program => $self->time_to_program,
-        delivered_bugs => $self->delivered_bugs,
+        n_distinct_operands  => $self->n_distinct_operands,
+        prog_vocab           => $self->prog_vocab,
+        prog_length          => $self->prog_length,
+        est_prog_length      => $self->est_prog_length,
+        volume               => $self->volume,
+        difficulty           => $self->difficulty,
+        level                => $self->level,
+        lang_level           => $self->lang_level,
+        intel_content        => $self->intel_content,
+        effort               => $self->effort,
+        time_to_program      => $self->time_to_program,
+        delivered_bugs       => $self->delivered_bugs,
     };
 }
 
