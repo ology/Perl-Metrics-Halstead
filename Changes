@@ -2,6 +2,7 @@ Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
     - Allow report decimal precision to be specified.
+    - Improve documentation.
 
 0.0606 2019-06-08 00:08:19
     - Improve the bin/halstead documentation.
