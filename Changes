@@ -1,9 +1,10 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Improve the bin/halstead documentation.
 
 0.0605 2019-04-15 18:37:18
-    - Cleaned up the bin/halstead code.
+    - Clean up the bin/halstead code.
 
 0.0604 2019-04-14 23:06:36
     - Improve die calls in the BUILD() routine.
