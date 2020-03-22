@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0608';
+our $VERSION = '0.0609';
 
 use PPI::Document;
 use PPI::Dumper;
@@ -238,9 +238,7 @@ sub _build_delivered_bugs {
 
 Create a new C<Perl::Metrics::Halstead> object given the B<file> argument.
 
-=head2 BUILD
-
-Process the given B<file> into the computed metrics.
+=for Pod::Coverage BUILD
 
 =cut
 
