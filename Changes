@@ -1,6 +1,8 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+
+0.0610 2020-03-22 20:21:35
     - Reinstate the MinimumPerl plugin.
 
 0.0609 2020-03-21 18:31:41
