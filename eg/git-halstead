@@ -1,0 +1,31 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Data::Dumper::Compact 'ddc';
+use Capture::Tiny qw(:all);
+use File::Temp qw(tempfile);
+use Perl::Metrics::Halstead;
+
+my $filename = shift || die "Usage: perl $0 filename.p{l,m} metric\n";
+my $metric = shift || 'difficulty';
+
+my $commits = qx{ git log --pretty=format:"%H" };
+my @commits = split /\n/, $commits;
+
+for my $commit (reverse @commits) {
+    my ($stdout, $stderr) = capture {
+        system('git', 'show', "$commit:$filename");
+    };
+    next if $stderr =~ /^fatal:/;
+
+    my $tmp = File::Temp->new;
+    print $tmp "$stdout\n";
+
+    my $halstead = eval { Perl::Metrics::Halstead->new(file => $tmp->filename) };
+    unless ($@) {
+#        print '-' x 50, "\n";
+#        $halstead->report;
+        print $metric, ': ', $halstead->dump->{$metric}, "\n";
+    }
+}
