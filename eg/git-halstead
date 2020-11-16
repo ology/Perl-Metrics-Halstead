@@ -13,7 +13,7 @@ my $metric = shift || 'difficulty';
 my $commits = qx{ git log --pretty=format:"%H" };
 my @commits = split /\n/, $commits;
 
-for my $commit (reverse @commits) {
+for my $commit (@commits) {
     my ($stdout, $stderr) = capture {
         system('git', 'show', "$commit:$filename");
     };
