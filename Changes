@@ -1,6 +1,9 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Fix up the eg/git-halstead program.
+
+0.0611 2020-11-15 16:27:14
     - Add the eg/git-halstead program.
     - Update documentation.
 
