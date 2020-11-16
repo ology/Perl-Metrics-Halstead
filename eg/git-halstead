@@ -24,8 +24,12 @@ for my $commit (@commits) {
 
     my $halstead = eval { Perl::Metrics::Halstead->new(file => $tmp->filename) };
     unless ($@) {
-#        print '-' x 50, "\n";
-#        $halstead->report;
-        print $metric, ': ', $halstead->dump->{$metric}, "\n";
+        if ($metric eq 'report') {
+            print '-' x 50, "\n";
+            $halstead->report;
+        }
+        else {
+            print $metric, ': ', $halstead->dump->{$metric}, "\n";
+        }
     }
 }
