@@ -1,6 +1,7 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Add the eg/git-halstead program.
 
 0.0610 2020-03-22 20:21:35
     - Reinstate the MinimumPerl plugin.
