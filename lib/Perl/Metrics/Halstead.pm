@@ -375,7 +375,8 @@ __END__
 
 =head1 SEE ALSO
 
-The F<bin/halstead> and F<t/01-methods.t> files in this distribution.
+The F<bin/halstead>, F<eg/git-halstead> and F<t/01-methods.t> files in
+this distribution.
 
 L<Moo>
 
