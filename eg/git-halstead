@@ -4,7 +4,7 @@ use warnings;
 
 use Data::Dumper::Compact 'ddc';
 use Capture::Tiny qw(:all);
-use File::Temp qw(tempfile);
+use File::Temp ();
 use Perl::Metrics::Halstead;
 
 my $filename = shift || die "Usage: perl $0 filename.p{l,m} metric\n";
