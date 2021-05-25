@@ -386,7 +386,7 @@ L<PPI::Dumper>
 
 L<https://en.wikipedia.org/wiki/Halstead_complexity_measures>
 
-L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
+L<https://ology.github.io/2019/03/19/halstead-software-complexity-of-perl-code/>
 
 L<https://www.verifysoft.com/en_halstead_metrics.html>
 
