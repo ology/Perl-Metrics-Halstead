@@ -19,7 +19,7 @@ use namespace::clean;
 
   my $metrics = $halstead->dump;
 
-  $halstead->report;
+  $halstead->report; # Print to STDOUT
 
 =head1 DESCRIPTION
 
@@ -29,7 +29,7 @@ Please see the explanatory links in the L</"SEE ALSO"> section for descriptions
 of what these attributes mean and how they are computed.
 
 My write-up about this technique is at
-L<http://techn.ology.net/halstead-software-complexity-of-perl-code/>
+L<https://ology.github.io/2019/03/19/halstead-software-complexity-of-perl-code/>
 
 The installed program for computing this is called L<halstead>.
 
