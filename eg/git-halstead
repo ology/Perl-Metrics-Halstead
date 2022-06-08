@@ -38,7 +38,7 @@ my $chart = Chart::Lines->new($w, $h);
 $chart->set(
     title        => 'Git Revision Halstead Complexity',
     x_label      => 'Revisions',
-    y_label      => $metric,
+    y_label      => ucfirst $metric,
     include_zero => 'false',
     precision    => 2,
     skip_x_ticks => 40,
