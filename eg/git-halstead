@@ -83,7 +83,7 @@ for my $file (@files) {
             $halstead = Perl::Metrics::Halstead->new(file => $tmp->filename);
         }
         catch {
-            warn "ERROR: $_\n";
+            warn "ERROR: $_";
         };
 
         if ($halstead) {
