@@ -3,7 +3,9 @@ use strict;
 use warnings;
 
 use Capture::Tiny qw(capture);
+use Chart::Plot ();
 use File::Temp ();
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead;
 
 my $filename = shift || die "Usage: perl $0 filename.p{l,m} metric\n";
@@ -11,6 +13,8 @@ my $metric = shift || 'difficulty';
 
 my $commits = qx{ git log --pretty=format:"%H" };
 my @commits = split /\n/, $commits;
+
+my @halstead;
 
 for my $commit (@commits) {
     my ($stdout, $stderr) = capture {
@@ -28,7 +32,38 @@ for my $commit (@commits) {
             $halstead->report;
         }
         else {
-            print $metric, ': ', $halstead->dump->{$metric}, "\n";
+            my $x = $halstead->dump->{$metric};
+            warn "$metric: $x\n";
+            push @halstead, $x;
         }
     }
 }
+
+exit if $metric eq 'report';
+
+my $w = shift || 640;
+my $h = shift || 480;
+my $s = shift || 10;
+my $t = shift || 'blue solidline points';
+
+my @x = (1 .. @halstead);
+my @y = @halstead;
+
+my $img = Chart::Plot->new($w, $h);
+$img->setData(
+    [1 .. @halstead],
+    \@halstead,
+    $t
+);
+
+#my ($xmin, $ymin, $xmax, $ymax) = $img->getBounds;
+
+$img->setGraphOptions(
+    title           => 'Git Revision Halstead Complexity',
+    horAxisLabel    => 'Revisions',
+    vertAxisLabel   => $metric,
+    horGraphOffset  => $w / $s,
+    vertGraphOffset => $h / $s,
+);
+
+print $img->draw;
