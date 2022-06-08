@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+
+# Graph the Halstead relative complexity of the
+# git revisions of tracked perl files.
+
 use strict;
 use warnings;
 
