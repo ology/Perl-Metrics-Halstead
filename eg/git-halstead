@@ -51,10 +51,11 @@ my @labels;
 
 my $i = 0; # loop counter
 
+@files = glob $files[0] if $files[0] =~ /\*/;
+
 for my $file (@files) {
     my ($name, $path, $suffix) = fileparse($file, qw(.pl .pm .t));
 
-    $path =~ s/^$base//;
     my @parts = File::Spec->splitdir($path);
     my $first = $parts[0];
     $path =~ s/^$first\///;
