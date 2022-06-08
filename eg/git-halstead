@@ -22,7 +22,7 @@ use Try::Tiny qw(try);
 my $metric = shift; # difficulty, effort, volume, etc
 my @files  = @ARGV;
 
-die "Usage: perl $0 metric /path/to/file.pl /another/Module.pm /some/test.t ...\n"
+die "Usage: perl $0 metric path/to/file.pl another/Module.pm some/test.t ...\n"
     unless $metric && @files;
 
 my $base = "$ENV{HOME}/sandbox/"; # drop from absolute filenames
