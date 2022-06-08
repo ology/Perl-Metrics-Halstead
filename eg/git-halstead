@@ -2,6 +2,9 @@
 
 # Graph the Halstead relative complexity of the
 # git revisions of tracked perl files.
+# Examples:
+# perl git-halstead difficulty Relative-dir-to-$base/lib/Some/Module.pm
+# perl git-halstead effort Relative-dir-to-$base/lib/Some/Module.pm Another/Package.pm # etc.
 
 use strict;
 use warnings;
