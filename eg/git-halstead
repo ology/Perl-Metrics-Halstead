@@ -9,6 +9,7 @@
 use strict;
 use warnings;
 
+use File::Slurper qw(read_text);
 use Capture::Tiny qw(capture);
 use Chart::Lines ();
 use Path::Tiny qw(path); # TODO consolidate these three:
@@ -17,7 +18,7 @@ use File::Basename qw(fileparse);
 use File::Temp ();
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
-use Try::Tiny qw(try);
+use Try::Tiny qw(try catch);
 
 my $metric = shift; # difficulty, effort, volume, etc
 my $base   = shift || "$ENV{HOME}/sandbox/";
@@ -76,9 +77,16 @@ for my $file (@files) {
         my $tmp = File::Temp->new;
         print $tmp "$stdout\n";
 
+        my $halstead;
         try {
-            # compute the Halstead complexity for this revision
-            my $halstead = Perl::Metrics::Halstead->new(file => $tmp->filename);
+            # compute the complexity for this revision
+            $halstead = Perl::Metrics::Halstead->new(file => $tmp->filename);
+        }
+        catch {
+            warn "ERROR: $_\n";
+        };
+
+        if ($halstead) {
             my $x = $halstead->dump->{$metric};
             warn "$metric: $x\n";
             push @halstead, $x;
