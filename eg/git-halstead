@@ -12,7 +12,7 @@ use warnings;
 use Capture::Tiny qw(capture);
 use Chart::Lines ();
 use Path::Tiny qw(path); # TODO consolidate these three:
-use File::Spec qw(splitdir);
+use File::Spec qw(catdir splitdir);
 use File::Basename qw(fileparse);
 use File::Temp ();
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
@@ -20,7 +20,7 @@ use Perl::Metrics::Halstead ();
 use Try::Tiny qw(try);
 
 my $metric = shift; # difficulty, effort, volume, etc
-my $base   = shift || "$ENV{HOME}/sandbox/"; # trailing slash required
+my $base   = shift || "$ENV{HOME}/sandbox/";
 my @files  = @ARGV;
 
 die "Usage: perl $0 metric /your/repos/ path/to/file.pl another/Module.pm some/test.t ...\n"
@@ -60,7 +60,7 @@ for my $file (@files) {
     my $first = $parts[0];
     $path =~ s/^$first\///;
 
-    chdir $base . $first or die "Can't chdir: $!";
+    chdir File::Spec->catdir($base, $first) or die "Can't chdir: $!";
 
     # get all the commit hashes
     my $commits = qx{ git log --pretty=format:"%H" };
