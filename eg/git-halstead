@@ -3,67 +3,100 @@ use strict;
 use warnings;
 
 use Capture::Tiny qw(capture);
-use Chart::Plot ();
+use Chart::LinesPoints ();
+use Path::Tiny qw(path);
+use File::Spec qw(catfile splitdir);
+use File::Basename qw(fileparse);
 use File::Temp ();
+use List::Util qw(max);
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
-use Perl::Metrics::Halstead;
+use Perl::Metrics::Halstead ();
 
-my $filename = shift || die "Usage: perl $0 filename.p{l,m} metric\n";
-my $metric = shift || 'difficulty';
+my $metric = shift;
+my @files  = @ARGV;
 
-my $commits = qx{ git log --pretty=format:"%H" };
-my @commits = split /\n/, $commits;
+die "Usage: perl $0 metric /path/to/file.pl /another/Module.pm /some/test.t ...\n"
+    unless $metric && @files;
 
-my @halstead;
+my $base = "$ENV{HOME}/sandbox/"; # drop from absolute filenames
 
-for my $commit (@commits) {
-    my ($stdout, $stderr) = capture {
-        system('git', 'show', "$commit:$filename");
-    };
-    next if $stderr =~ /^fatal:/;
+my $dir = path('.')->absolute; # where are we?
 
-    my $tmp = File::Temp->new;
-    print $tmp "$stdout\n";
+chdir $base;
 
-    my $halstead = eval { Perl::Metrics::Halstead->new(file => $tmp->filename) };
-    unless ($@) {
-        if ($metric eq 'report') {
-            print '-' x 50, "\n";
-            $halstead->report;
-        }
-        else {
+my $w = 640;
+my $h = 480;
+my $chart = Chart::LinesPoints->new($w, $h);
+
+$chart->set(
+    legend       => 'none',
+    title        => 'Git Revision Halstead Complexity',
+    x_label      => 'Revisions',
+    y_label      => $metric,
+    include_zero => 'false',
+    precision    => 2,
+    skip_x_ticks => 40,
+    brush_size   => 2,
+    pt_size      => 4,
+    y_grid_lines => 'true',
+);
+
+my @dataset;
+
+my $i = 0; # loop counter
+
+for my $file (@files) {
+    my ($name, $path, $suffix) = fileparse($file, qw(.pl .pm .t));
+
+    $path =~ s/^$base//;
+    my @parts = File::Spec->splitdir($path);
+    $path =~ s/^$parts[0]\///;
+
+    chdir $base . $parts[0] or die "Can't chdir: $!";
+
+    # get all the commit hashes
+    my $commits = qx{ git log --pretty=format:"%H" };
+    my @commits = split /\n/, $commits;
+
+    my @halstead; # score array
+
+    for my $commit (@commits) {
+        my ($stdout, $stderr) = capture {
+            system('git', 'show', "$commit:$path$name$suffix");
+        };
+        next if $stderr =~ /^fatal:/;
+
+        my $tmp = File::Temp->new;
+        print $tmp "$stdout\n";
+
+        my $halstead = eval { Perl::Metrics::Halstead->new(file => $tmp->filename) };
+        unless ($@) {
             my $x = $halstead->dump->{$metric};
             warn "$metric: $x\n";
             push @halstead, $x;
         }
     }
+
+    push @dataset, \@halstead;
+
+    $i++;
 }
 
-exit if $metric eq 'report';
+chdir $dir;
 
-my $w = shift || 640;
-my $h = shift || 480;
-my $s = shift || 10;
-my $t = shift || 'blue solidline points';
+my $max = 0;
 
-my @x = (1 .. @halstead);
-my @y = @halstead;
+for my $data (@dataset) {
+    my $x = @$data;
+    $max = $x if $x > $max;
+}
 
-my $img = Chart::Plot->new($w, $h);
-$img->setData(
-    [1 .. @halstead],
-    \@halstead,
-    $t
-);
+$chart->add_dataset(1 .. $max);
+for my $data (@dataset) {
+    if (@$data < $max) {
+        push @$data, (0) x ($max - @$data);
+    }
+    $chart->add_dataset(@$data);
+}
 
-#my ($xmin, $ymin, $xmax, $ymax) = $img->getBounds;
-
-$img->setGraphOptions(
-    title           => 'Git Revision Halstead Complexity',
-    horAxisLabel    => 'Revisions',
-    vertAxisLabel   => $metric,
-    horGraphOffset  => $w / $s,
-    vertGraphOffset => $h / $s,
-);
-
-print $img->draw;
+$chart->png("$0.png");
