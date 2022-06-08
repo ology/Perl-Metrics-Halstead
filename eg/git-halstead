@@ -3,12 +3,11 @@ use strict;
 use warnings;
 
 use Capture::Tiny qw(capture);
-use Chart::LinesPoints ();
+use Chart::Lines ();
 use Path::Tiny qw(path);
 use File::Spec qw(catfile splitdir);
 use File::Basename qw(fileparse);
 use File::Temp ();
-use List::Util qw(max);
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
 
@@ -24,12 +23,11 @@ my $dir = path('.')->absolute; # where are we?
 
 chdir $base;
 
-my $w = 640;
-my $h = 480;
-my $chart = Chart::LinesPoints->new($w, $h);
+my $w = 800;
+my $h = 600;
+my $chart = Chart::Lines->new($w, $h);
 
 $chart->set(
-    legend       => 'none',
     title        => 'Git Revision Halstead Complexity',
     x_label      => 'Revisions',
     y_label      => $metric,
@@ -42,6 +40,7 @@ $chart->set(
 );
 
 my @dataset;
+my @labels;
 
 my $i = 0; # loop counter
 
@@ -50,9 +49,10 @@ for my $file (@files) {
 
     $path =~ s/^$base//;
     my @parts = File::Spec->splitdir($path);
-    $path =~ s/^$parts[0]\///;
+    my $first = $parts[0];
+    $path =~ s/^$first\///;
 
-    chdir $base . $parts[0] or die "Can't chdir: $!";
+    chdir $base . $first or die "Can't chdir: $!";
 
     # get all the commit hashes
     my $commits = qx{ git log --pretty=format:"%H" };
@@ -77,15 +77,16 @@ for my $file (@files) {
         }
     }
 
-    push @dataset, \@halstead;
+    push @dataset, [ reverse @halstead ];
+    push @labels, $first;
 
     $i++;
 }
 
 chdir $dir;
 
+# find the number of x-axis datapoints
 my $max = 0;
-
 for my $data (@dataset) {
     my $x = @$data;
     $max = $x if $x > $max;
@@ -98,5 +99,7 @@ for my $data (@dataset) {
     }
     $chart->add_dataset(@$data);
 }
+
+$chart->set(legend_labels => \@labels);
 
 $chart->png("$0.png");
