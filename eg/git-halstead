@@ -14,6 +14,7 @@ use File::Basename qw(fileparse);
 use File::Temp ();
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
+use Try::Tiny qw(try);
 
 my $metric = shift; # difficulty, effort, volume, etc
 my @files  = @ARGV;
@@ -73,20 +74,23 @@ for my $file (@files) {
         my $tmp = File::Temp->new;
         print $tmp "$stdout\n";
 
-        my $halstead = eval { Perl::Metrics::Halstead->new(file => $tmp->filename) };
-        unless ($@) {
+        try {
+            # compute the Halstead complexity for this revision
+            my $halstead = Perl::Metrics::Halstead->new(file => $tmp->filename);
             my $x = $halstead->dump->{$metric};
             warn "$metric: $x\n";
             push @halstead, $x;
         }
     }
 
+    # reverse because commits are last to first
     push @dataset, [ reverse @halstead ];
     push @labels, $first;
 
     $i++;
 }
 
+# go back to where we started
 chdir $dir;
 
 # find the number of x-axis datapoints
@@ -96,8 +100,11 @@ for my $data (@dataset) {
     $max = $x if $x > $max;
 }
 
+# add the number of revisions
 $chart->add_dataset(1 .. $max);
+# add the computed data
 for my $data (@dataset) {
+    # pad the end of the array with zeros if needed
     if (@$data < $max) {
         push @$data, (0) x ($max - @$data);
     }
