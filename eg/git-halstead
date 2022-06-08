@@ -19,11 +19,11 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
 use Try::Tiny qw(try);
 
-my $base   = shift || "$ENV{HOME}/sandbox/"; # drop this from absolute filenames below
+my $base   = shift || "$ENV{HOME}/sandbox/"; # drop this from absolute filenames below - trailing slach required
 my $metric = shift; # difficulty, effort, volume, etc
 my @files  = @ARGV;
 
-die "Usage: perl $0 metric path/to/file.pl another/Module.pm some/test.t ...\n"
+die "Usage: perl $0 /your/repos/ metric path/to/file.pl another/Module.pm some/test.t ...\n"
     unless $metric && @files;
 
 my $dir = path('.')->absolute; # where are we?
