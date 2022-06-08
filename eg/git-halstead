@@ -24,7 +24,7 @@ my $base   = shift || "$ENV{HOME}/sandbox/"; # drop from absolute filenames belo
 my @files  = @ARGV;
 
 die "Usage: perl $0 metric /your/repos/ path/to/file.pl another/Module.pm some/test.t ...\n"
-    unless $metric && @files;
+    unless $metric && $base && @files;
 
 my $dir = path('.')->absolute; # where are we?
 
