@@ -95,6 +95,8 @@ for my $file (@files) {
 # go back to where we started
 chdir $dir;
 
+die "Something went wrong\n" unless @{ $dataset[0] };
+
 # find the number of x-axis datapoints
 my $max = 0;
 for my $data (@dataset) {
