@@ -3,8 +3,8 @@
 # Graph the Halstead relative complexity of the git revisions of tracked perl files.
 # The files are given relative to your repository directory ($base below).
 # Examples:
-# perl git-halstead difficulty Relative-dir-to-$base/lib/Some/Module.pm
-# perl git-halstead effort Relative-dir-to-$base/lib/Some/Module.pm Another/Package.pm # etc.
+# perl git-halstead /home/you/repos/ difficulty Relative-dir-to-$base/lib/Some/Module.pm
+# perl git-halstead /home/you/repos/ effort     Relative-dir-to-$base/lib/Some/Module.pm Another/Package.pm # etc.
 
 use strict;
 use warnings;
@@ -19,13 +19,12 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
 use Try::Tiny qw(try);
 
+my $base   = shift || "$ENV{HOME}/sandbox/"; # drop this from absolute filenames below
 my $metric = shift; # difficulty, effort, volume, etc
 my @files  = @ARGV;
 
 die "Usage: perl $0 metric path/to/file.pl another/Module.pm some/test.t ...\n"
     unless $metric && @files;
-
-my $base = "$ENV{HOME}/sandbox/"; # drop from absolute filenames - CHANGE ME
 
 my $dir = path('.')->absolute; # where are we?
 
