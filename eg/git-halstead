@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 
-# Graph the Halstead relative complexity of the
-# git revisions of tracked perl files.
+# Graph the Halstead relative complexity of the git revisions of tracked perl files.
+# The files are given relative to your repository directory ($base below).
 # Examples:
 # perl git-halstead difficulty Relative-dir-to-$base/lib/Some/Module.pm
 # perl git-halstead effort Relative-dir-to-$base/lib/Some/Module.pm Another/Package.pm # etc.
