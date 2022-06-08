@@ -23,7 +23,7 @@ my $dir = path('.')->absolute; # where are we?
 
 chdir $base;
 
-my $w = 800;
+my $w = 900;
 my $h = 600;
 my $chart = Chart::Lines->new($w, $h);
 
