@@ -11,7 +11,7 @@ use File::Temp ();
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
 
-my $metric = shift;
+my $metric = shift; # difficulty, effort, volume, etc
 my @files  = @ARGV;
 
 die "Usage: perl $0 metric /path/to/file.pl /another/Module.pm /some/test.t ...\n"
