@@ -5,7 +5,7 @@ use warnings;
 use Capture::Tiny qw(capture);
 use Chart::Lines ();
 use Path::Tiny qw(path);
-use File::Spec qw(catfile splitdir);
+use File::Spec qw(splitdir);
 use File::Basename qw(fileparse);
 use File::Temp ();
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
