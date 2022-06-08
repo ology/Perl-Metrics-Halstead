@@ -85,7 +85,7 @@ for my $file (@files) {
         }
     }
 
-    # reverse because commits are last to first
+    # reverse because commits are last to first by date
     push @dataset, [ reverse @halstead ];
     push @labels, $first;
 
