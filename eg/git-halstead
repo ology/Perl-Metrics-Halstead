@@ -50,8 +50,6 @@ $chart->set(
 my @dataset;
 my @labels;
 
-my $i = 0; # loop counter
-
 @files = glob $files[0] if $files[0] =~ /\*/;
 
 for my $file (@files) {
@@ -68,7 +66,11 @@ for my $file (@files) {
 
     my @halstead; # score array
 
+    my $i = 0; # loop counter
+
     for my $commit (split /\n/, $commits) {
+        $i++;
+
         my ($stdout, $stderr) = capture {
             system('git', 'show', "$commit:$path$name$suffix");
         };
@@ -83,12 +85,12 @@ for my $file (@files) {
             $halstead = Perl::Metrics::Halstead->new(file => $tmp->filename);
         }
         catch {
-            warn "ERROR: $_";
+            warn "$i. ERROR: $_";
         };
 
         if ($halstead) {
             my $x = $halstead->dump->{$metric};
-            warn "$metric: $x\n";
+            warn "$i. $metric: $x\n";
             push @halstead, $x;
         }
     }
@@ -96,8 +98,6 @@ for my $file (@files) {
     # reverse because commits are last to first by date
     push @dataset, [ reverse @halstead ];
     push @labels, $first;
-
-    $i++;
 }
 
 # go back to where we started
