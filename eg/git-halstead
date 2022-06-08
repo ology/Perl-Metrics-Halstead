@@ -64,11 +64,10 @@ for my $file (@files) {
 
     # get all the commit hashes
     my $commits = qx{ git log --pretty=format:"%H" };
-    my @commits = split /\n/, $commits;
 
     my @halstead; # score array
 
-    for my $commit (@commits) {
+    for my $commit (split /\n/, $commits) {
         my ($stdout, $stderr) = capture {
             system('git', 'show', "$commit:$path$name$suffix");
         };
