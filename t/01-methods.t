@@ -4,9 +4,7 @@ use warnings;
 
 use Test::More;
 use Test::Exception;
-use Capture::Tiny ':all';
-
-my $x; # difficulty comparison var
+use Capture::Tiny 'capture';
 
 use_ok 'Perl::Metrics::Halstead';
 
@@ -31,8 +29,7 @@ subtest attrs => sub {
     is $pmh->prog_length, 9, 'prog_length';
     is sprintf('%.3f', $pmh->est_prog_length), '11.610', 'est_prog_length';
     is sprintf('%.3f', $pmh->volume), 23.265, 'volume';
-    $x = $pmh->difficulty; # set the initial difficulty
-    is sprintf('%.3f', $x), '2.500', 'difficulty';
+    is sprintf('%.3f', $pmh->difficulty), '2.500', 'difficulty';
     is sprintf('%.3f', $pmh->level), '0.400', 'level';
     is sprintf('%.3f', $pmh->lang_level), 3.722, 'lang_level';
     is sprintf('%.3f', $pmh->intel_content), 9.306, 'intel_content';
@@ -50,16 +47,20 @@ subtest methods => sub {
 
     my ($stdout, $stderr) = capture { $pmh->report };
     ok !$stderr, 'no report errors';
-    like $stdout, qr/difficulty: $x/, 'report difficulty';
+    $got = $pmh->difficulty;
+    like $stdout, qr/difficulty: $got/, 'report difficulty';
 };
 
 subtest difficulty => sub {
-    my $pmh = new_ok 'Perl::Metrics::Halstead' => [ file => 'eg/tester2.pl' ];
-    ok $pmh->difficulty > $x, 'increasing difficulty';
-    $x = $pmh->difficulty;
+    my $pmh = new_ok 'Perl::Metrics::Halstead' => [ file => 'eg/tester1.pl' ];
+    my $got = $pmh->difficulty; # set the initial metric
+
+    $pmh = new_ok 'Perl::Metrics::Halstead' => [ file => 'eg/tester2.pl' ];
+    ok $pmh->difficulty > $got, 'increasing difficulty';
+    $got = $pmh->difficulty; # reset the metric
 
     $pmh = new_ok 'Perl::Metrics::Halstead' => [ file => 'eg/tester3.pl' ];
-    ok $pmh->difficulty > $x, 'increasing difficulty';
+    ok $pmh->difficulty > $got, 'increasing difficulty';
 };
 
 done_testing();
