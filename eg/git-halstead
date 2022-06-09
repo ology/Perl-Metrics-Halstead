@@ -29,8 +29,6 @@ die "Usage: perl $0 metric /your/repos/ path/to/file.pl another/Module.pm some/t
 
 my $dir = path('.')->absolute; # where are we?
 
-chdir $base;
-
 my $w = 900;
 my $h = 600;
 my $chart = Chart::Lines->new($w, $h);
