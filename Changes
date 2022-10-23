@@ -1,6 +1,7 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Avoid implicit imports.
 
 0.0616 2022-06-08 18:10:20
     - Improve the test script.
