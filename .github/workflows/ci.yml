@@ -40,7 +40,7 @@ jobs:
     - name: Install Modules
       run: |
         dzil authordeps --missing | cpanm --notest
-        dzil listdeps --missing | cpanm --notest
+        dzil listdeps --develop --missing | cpanm --notest
 
     - name: Show Errors on Windows
       if:  ${{ failure() && startsWith( matrix.runner, 'windows-')}}
