@@ -20,6 +20,9 @@ jobs:
     name: OS ${{matrix.runner}} Perl ${{matrix.perl}}
 
     steps:
+    - name: Git config
+      run: git config --global core.autocrlf false
+
     - uses: actions/checkout@v2
 
     - name: Set up perl
