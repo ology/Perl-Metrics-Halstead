@@ -2,7 +2,7 @@ package Perl::Metrics::Halstead;
 
 # ABSTRACT: Compute Halstead complexity metrics
 
-our $VERSION = '0.0618';
+our $VERSION = '0.0619';
 
 use strictures 2;
 use Moo;
