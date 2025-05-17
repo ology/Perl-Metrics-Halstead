@@ -16,7 +16,6 @@ use Path::Tiny qw(path); # TODO consolidate these three:
 use File::Spec qw(catdir splitdir);
 use File::Basename qw(fileparse);
 use File::Temp ();
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Perl-Metrics-Halstead);
 use Perl::Metrics::Halstead ();
 use Try::Tiny qw(try catch);
 
