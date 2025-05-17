@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# PODNAME: halstead
+# PODNAME: halstead.pl
 use strict;
 use warnings;
 
