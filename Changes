@@ -1,6 +1,8 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+
+0.0619 2025-05-16 23:29:52
     - Fix bin/halstead.
 
 0.0618 2025-05-16 20:19:36
