@@ -1,6 +1,7 @@
 Revision history for Perl-Metrics-Halstead
 
 {{$NEXT}}
+    - Fix bin/halstead.
 
 0.0618 2025-05-16 20:19:36
     - Add the eg/self.pl program.
